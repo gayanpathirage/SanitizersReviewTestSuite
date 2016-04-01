@@ -45,13 +45,16 @@ The following people can/have contribute/d to this project.
 e.g. Run only Test 1;
 
 **Valgrind**
+
 /mnt/exds/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
 
 
 **ASAN**
+
 MCTester_ASAN 1 1
 
 **Dr.Memory**
+
 /x01/exd10/DrMemory-Linux-1.10.0-2/bin>./drmemory -light -- MCTester 1 1
 
 ##Additional Settings
