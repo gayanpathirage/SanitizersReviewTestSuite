@@ -40,7 +40,20 @@ The following people can/have contribute/d to this project.
 
 
 /usr/local/gcc-4.9.3/bin/g++ -o MCTester_ASAN -static-libstdc++ -static-libasan -O -g -fsanitize=address -fno-omit-frame-pointer -Wall main.cpp
-	
+
+##Running
+e.g. Run only Test 1;
+
+**Valgrind**
+/mnt/exds/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
+
+
+**ASAN**
+MCTester_ASAN 1 1
+
+**Dr.Memory**
+/x01/exd10/DrMemory-Linux-1.10.0-2/bin>./drmemory -light -- MCTester 1 1
+
 ##Additional Settings
 **Run Time flags of ASAN**
 
