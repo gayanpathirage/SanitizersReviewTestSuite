@@ -1,0 +1,12 @@
+#!/bin/bash
+rm -rf valgrind_result.log 
+rm -rf *vgcore*    
+for i in {1..26}
+do
+    echo "Executing Test $i"
+    echo "=================================================================================================================================" >>valgrind_result.log 2>&1
+    echo "== Starting Test $i" >>valgrind_result.log 2>&1
+    echo "=================================================================================================================================" >>valgrind_result.log 2>&1
+    /mnt/exds/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester $i $i >>valgrind_result.log 2>&1
+    echo "=================================================================================================================================" >>valgrind_result.log 2>&1
+done
