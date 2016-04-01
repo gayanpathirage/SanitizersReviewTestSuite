@@ -262,11 +262,10 @@ void heapOutOfBoundWriteLarge()
 	delete[] array2;
 }
 
+#define TOTAL_TESTS 26
 void generateTestList(int argc, char** argv, std::list<int>* lst_Tests)
 {
-	int total_tests = 100;
-
-	for (int n = 1; n <= total_tests; ++n)
+	for (int n = 1; n <= TOTAL_TESTS; ++n)
 	{
 		if (argc == 1) //Run all tests
 		{
@@ -295,9 +294,11 @@ void generateTestList(int argc, char** argv, std::list<int>* lst_Tests)
 
 int main(int argc, char** argv)
 {
+	if (argc == 2 && atoi(argv[1]) == 0) //Return number of tests 
+		return TOTAL_TESTS;
+
 	std::list<int> lst_Tests;
 	generateTestList(argc, argv, &lst_Tests);
-
 
 	lst_Tests.sort();
 	std::list<int>::iterator ite = lst_Tests.begin();
