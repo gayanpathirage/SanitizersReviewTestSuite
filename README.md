@@ -5,10 +5,14 @@
 This repository contains C++ test code and support scripts developed to easily compare Memory Sanitizer tools like
 Valgrind, ASAN, Dr.Memory, etc
 
+
 **Review Results**
 
-@ [Sanitizers for C++ (Valgrind, Dr.Memory, ASAN, TSAN, MSAN, .....)](https://confluence.millenniumit.com/pages/viewpage.action?pageId=30521524)
+@ [To be updated in the wiki)](https://github.com/gayanpathirage/SanitizersReviewTestSuite/wiki)
 
+
+##Licence
+The MIT License (MIT)
 
 
 ##Branch Model
@@ -21,13 +25,6 @@ Read more @ [GitHub Flow](https://guides.github.com/introduction/flow/) before y
 The following are required for building this source code.
 
 * GCC 4.9.3 or above
-
-
-
-##Contributors
-The following people can/have contribute/d to this project.
-
-* Gayan Pathirage \<<gayancp@millenniumit.com>\>
 
 
 ##Building
@@ -46,7 +43,7 @@ e.g. Run only Test 1;
 
 **Valgrind**
 
-/mnt/exds/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
+/mnt/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
 
 
 **ASAN**
@@ -55,7 +52,7 @@ MCTester_ASAN 1 1
 
 **Dr.Memory**
 
-/x01/exd10/DrMemory-Linux-1.10.0-2/bin>./drmemory -light -- MCTester 1 1
+/mnt/DrMemory-Linux-1.10.0-2/bin>./drmemory -light -- MCTester 1 1
 
 ##Additional Settings
 **Run Time flags of ASAN**
@@ -82,7 +79,3 @@ with --keep-stacktraces=none --undef-value-errors=no options to be inline with A
 * Test suite can run range of tests e.g. MCTester_ASAN 1 - 10
 * Test suite can run tests starting from a test MCTester_ASAN 10 - this will execute all 10,11,12,....
 * Test suite can run individual test e.g. MCTester_ASAN 1 1 - will execute only Test 1
-
-
-##History
-Repo created by Gayan Pathirage \<<gayancp@millenniumit.com>\> on April 01, 2016
