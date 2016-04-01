@@ -1,7 +1,10 @@
 #!/bin/bash
 rm -rf valgrind_result.log 
 rm -rf *vgcore*    
-for i in {1..26}
+MCTester 0 &> /dev/null
+tests=$?
+echo "Total Tests: $tests" 
+for i in $(seq 1 $tests)
 do
     echo "Executing Test $i"
     echo "=================================================================================================================================" >>valgrind_result.log 2>&1
