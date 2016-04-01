@@ -1,10 +1,9 @@
-C++ Sanitizers Review Test Suite
+#C++ Sanitizers Review Test Suite
 ==================================================
 
 
 
-Overview
---------
+##Overview
 This repository contains C++ test code and support scripts developed to easily compare Memory Sanitizer tools like
 Valgrind, ASAN, Dr.Memory, etc
 
@@ -14,30 +13,26 @@ Valgrind, ASAN, Dr.Memory, etc
 
 
 
-Branch Model
-------------
-This repository is following Gitflow branch model
-Read more @ https://confluence.millenniumit.com/display/EXCH/Gitflow+branching+model before you commit changes to this repository.
+##Branch Model
+This repository is following GitHub Flow branch model
+Read more @ [GitHub Flow](https://guides.github.com/introduction/flow/) before you commit changes to this repository.
 
 
 
-Requirements
-------------
+##Requirements
 The following are required for building this source code.
 
 * GCC 4.9.3 or above
 
 
 
-Contributors
-------------
+##Contributors
 The following people can/have contribute/d to this project.
 
 * Gayan Pathirage \<<gayancp@millenniumit.com>\>
 
 
-Building
---------
+##Building
 **Normal Build**
 
 
@@ -48,8 +43,7 @@ Building
 
 /usr/local/gcc-4.9.3/bin/g++ -o MCTester_ASAN -static-libstdc++ -static-libasan -O -g -fsanitize=address -fno-omit-frame-pointer -Wall main.cpp
 	
-Additional Settings
--------------------
+##Additional Settings
 **Run Time flags of ASAN**
 
 
@@ -69,14 +63,12 @@ with --keep-stacktraces=none --undef-value-errors=no options to be inline with A
 
 -light -count_leaks : This will not detect uninitialized read errors, but lists leak errors.
 
-Major features
---------------
+##Major features
 * Test suite can be run all tests e.g. MCTester_ASAN <No-Args>
 * Test suite can run range of tests e.g. MCTester_ASAN 1 - 10
 * Test suite can run tests starting from a test MCTester_ASAN 10 - this will execute all 10,11,12,....
 * Test suite can run individual test e.g. MCTester_ASAN 1 1 - will execute only Test 1
 
 
-History
--------
+##History
 Repo created by Gayan Pathirage \<<gayancp@millenniumit.com>\> on April 01, 2016
