@@ -27,6 +27,7 @@ SOFTWARE.
 #include <cstdlib>
 #include <list>
 #include <sys/time.h>
+#include <string.h>
 
 int global_array[100] = { -1 };
 int global_array2[10] = { -1 }; //Space to corrupt
@@ -156,14 +157,17 @@ void memoryLeakSimple()
 		array[i] = 0;
 }
 
+class TestClass
+{
+public:
+	TestClass() { array = new int[10]; }
+	int* array;
+};
+
 void memoryLeakIndirectly()
 {
 	printf("Testing indirect memory leak \n");
-	int* array = new int[100];
-	for (int i = 0; i < 100; i++) //Initialize
-		array[i] = 0;
-	array = new int[10]; //Re-define array, causing the leak
-	delete[] array;
+	TestClass* tc1 = new TestClass();
 }
 
 void useOfUninitialized(int x)
@@ -196,12 +200,20 @@ void conditionalUseOfUninitializedHeap(int x)
 		printf("condition (x < 1) not met based on uninitialized value : %d \n", x);
 }
 
-void charBufferOverflow(char* zBuf/*Input someting more than 2 chars long*/)
+void charBufferOverflow()
 {
-	printf("Testing buffer overflow \n");
+	printf("Testing buffer overflow ");
 	char* zHeapBuf = new char[2];
-	zHeapBuf = zBuf;
-	delete[] zHeapBuf;
+	strcpy(zHeapBuf, "Writing more than 2 chars");
+	printf("char pointer overlfow %c \n", zHeapBuf[4]);
+}
+
+void charBufferOverflowStack()
+{
+	printf("Testing buffer overflow ");
+	char zBuf[2];
+	strcpy(zBuf, "Writing more than 2 chars");
+	printf("char pointer overlfow %c \n", zBuf[4]);
 }
 
 void invalidFree()
@@ -250,11 +262,6 @@ void speedTest()
 	//printf("Stop: %.61f ", t2);
 	printf("%.6lf seconds elapsed\n", t2 - t1);
 
-}
-
-void threadRaiseTest()
-{
-	
 }
 
 int heapOutOfBoundReadLarge()
@@ -352,16 +359,11 @@ int main(int argc, char** argv)
 				conditionalUseOfUninitializedHeap(y[0]);
 				delete[] y; 
 			} break;
-			case 16: {
-				char* zLenBuf = new char[5];
-				for (int i = 0; i < 5; i++)
-					zLenBuf[i] = i;
-				charBufferOverflow(zLenBuf);
-			} break;
+			case 16: { charBufferOverflow();} break;
 			case 17: { invalidFree();} break;
 			case 18: { mismatchedFree();} break;
 			case 19: { speedTest(); } break;
-			case 20: { threadRaiseTest(); } break;
+			case 20: { charBufferOverflowStack(); } break;
 			case 21: { heapOutOfBoundReadLarge(); } break;			
 			case 22: { heapOutOfBoundWriteLarge(); } break;
 			case 23: { stackOutOfBoundReadLarge(); } break;
