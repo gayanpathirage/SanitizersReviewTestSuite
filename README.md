@@ -8,7 +8,7 @@ Valgrind, ASAN, Dr.Memory, etc
 
 **Review Results**
 
-@ [To be updated in the wiki)](https://github.com/gayanpathirage/SanitizersReviewTestSuite/wiki)
+@ [To be updated in the wiki](https://github.com/gayanpathirage/SanitizersReviewTestSuite/wiki)
 
 
 ##Licence
@@ -30,35 +30,40 @@ The following are required for building this source code.
 ##Building
 **Normal Build**
 
-
+```
 /usr/local/gcc-4.9.3/bin/g++ -o MCTester -O -g -Wall main.cpp
+```
 
 **ASAN Build**
 
-
+```
 /usr/local/gcc-4.9.3/bin/g++ -o MCTester_ASAN -static-libstdc++ -static-libasan -O -g -fsanitize=address -fno-omit-frame-pointer -Wall main.cpp
+```
 
 ##Running
 e.g. Run only Test 1;
 
 **Valgrind**
-
+```
 /mnt/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
-
+```
 
 **ASAN**
-
+```
 MCTester_ASAN 1 1
+```
 
 **Dr.Memory**
-
+```
 /mnt/DrMemory-Linux-1.10.0-2/bin>./drmemory -light -- MCTester 1 1
+```
 
 ##Additional Settings
 **Run Time flags of ASAN**
 
-
+```
 export ASAN_OPTIONS=detect_leaks=1:verbose=1
+```
 
 detect_leaks will enable LeakSanitizer (LSAN) with ASAN
 
@@ -73,6 +78,11 @@ with --keep-stacktraces=none --undef-value-errors=no options to be inline with A
 -light : This will not detect uninitialized read and memory leak errors (to be inline with ASAN features)
 
 -light -count_leaks : This will not detect uninitialized read errors, but lists leak errors.
+
+##Results
+* **Valgrind** : [Gist](https://gist.github.com/gayanpathirage/3731b6493a7b74daa6d5fc59289cc35a)
+* **ASAN** : [Gist](https://gist.github.com/gayanpathirage/6a791caf81e39ea8d4926aeeaf71641d)
+* **Dr.Memory** : [Gist](https://gist.github.com/gayanpathirage/f4ce60f5a5f50e53b6f0358bd3a834e1)
 
 ##Major features
 * Test suite can be run all tests e.g. MCTester_ASAN <No-Args>
