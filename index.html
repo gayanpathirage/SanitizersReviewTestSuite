@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>C++ Sanitizers Review Test Suite by gayanpathirage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">C++ Sanitizers Review Test Suite</h1>
+      <h2 class="project-tagline">C++ Sanitizers Valgrind, ASAN, Dr.Memory, etc Review Test Suite</h2>
+      <a href="https://github.com/gayanpathirage/SanitizersReviewTestSuite" class="btn">View on GitHub</a>
+      <a href="https://github.com/gayanpathirage/SanitizersReviewTestSuite/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/gayanpathirage/SanitizersReviewTestSuite/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="c-sanitizers-review-test-suite" class="anchor" href="#c-sanitizers-review-test-suite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>C++ Sanitizers Review Test Suite</h1>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>This repository contains C++ test code and support scripts developed to easily compare Memory Sanitizer tools like
+Valgrind, ASAN, Dr.Memory, etc</p>
+
+<p><strong>Review Results</strong></p>
+
+<p>@ <a href="https://github.com/gayanpathirage/SanitizersReviewTestSuite/wiki">To be updated in the wiki</a></p>
+
+<h2>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>The MIT License (MIT)</p>
+
+<h2>
+<a id="branch-model" class="anchor" href="#branch-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Branch Model</h2>
+
+<p>This repository is following GitHub Flow branch model
+Read more @ <a href="https://guides.github.com/introduction/flow/">GitHub Flow</a> before you commit changes to this repository.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>The following are required for building this source code.</p>
+
+<ul>
+<li>GCC 4.9.3 or above</li>
+</ul>
+
+<h2>
+<a id="building" class="anchor" href="#building" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building</h2>
+
+<p><strong>Normal Build</strong></p>
+
+<pre><code>/usr/local/gcc-4.9.3/bin/g++ -o MCTester -O -g -Wall main.cpp
+</code></pre>
+
+<p><strong>ASAN Build</strong></p>
+
+<pre><code>/usr/local/gcc-4.9.3/bin/g++ -o MCTester_ASAN -static-libstdc++ -static-libasan -O -g -fsanitize=address -fno-omit-frame-pointer -Wall main.cpp
+</code></pre>
+
+<h2>
+<a id="running" class="anchor" href="#running" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running</h2>
+
+<p>e.g. Run only Test 1;</p>
+
+<p><strong>Valgrind</strong></p>
+
+<pre><code>/mnt/ValgrindInstallations/SuSE-11-SP3/valgrind-3.11.0/vg-in-place --tool=memcheck  MCTester 1 1
+</code></pre>
+
+<p><strong>ASAN</strong></p>
+
+<pre><code>MCTester_ASAN 1 1
+</code></pre>
+
+<p><strong>Dr.Memory</strong></p>
+
+<pre><code>/mnt/DrMemory-Linux-1.10.0-2/bin&gt;./drmemory -light -- MCTester 1 1
+</code></pre>
+
+<h2>
+<a id="additional-settings" class="anchor" href="#additional-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional Settings</h2>
+
+<p><strong>Run Time flags of ASAN</strong></p>
+
+<pre><code>export ASAN_OPTIONS=detect_leaks=1:verbose=1
+</code></pre>
+
+<p>detect_leaks will enable LeakSanitizer (LSAN) with ASAN</p>
+
+<p><strong>Options to enable when running Valgrind</strong></p>
+
+<p>with --keep-stacktraces=none --undef-value-errors=no options to be inline with ASAN features</p>
+
+<p><strong>Options to enable when running Dr.Memory</strong></p>
+
+<p>-light : This will not detect uninitialized read and memory leak errors (to be inline with ASAN features)</p>
+
+<p>-light -count_leaks : This will not detect uninitialized read errors, but lists leak errors.</p>
+
+<h2>
+<a id="results" class="anchor" href="#results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
+
+<ul>
+<li>
+<strong>Valgrind</strong> : <a href="https://gist.github.com/gayanpathirage/3731b6493a7b74daa6d5fc59289cc35a">Gist</a>
+</li>
+<li>
+<strong>ASAN</strong> : <a href="https://gist.github.com/gayanpathirage/6a791caf81e39ea8d4926aeeaf71641d">Gist</a>
+</li>
+<li>
+<strong>Dr.Memory</strong> : <a href="https://gist.github.com/gayanpathirage/f4ce60f5a5f50e53b6f0358bd3a834e1">Gist</a>
+</li>
+</ul>
+
+<h2>
+<a id="major-features" class="anchor" href="#major-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Major features</h2>
+
+<ul>
+<li>Test suite can be run all tests e.g. MCTester_ASAN </li>
+<li>Test suite can run range of tests e.g. MCTester_ASAN 1 - 10</li>
+<li>Test suite can run tests starting from a test MCTester_ASAN 10 - this will execute all 10,11,12,....</li>
+<li>Test suite can run individual test e.g. MCTester_ASAN 1 1 - will execute only Test 1</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/gayanpathirage/SanitizersReviewTestSuite">C++ Sanitizers Review Test Suite</a> is maintained by <a href="https://github.com/gayanpathirage">gayanpathirage</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
