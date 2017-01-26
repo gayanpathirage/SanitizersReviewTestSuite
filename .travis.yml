@@ -1,4 +1,21 @@
 language: cpp
 compiler:
-  - clang
   - gcc
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "2XrLJbMrXDTGB0RbZjMzg04SiCUoTtBKMOa00htS6/U7YCas+A/tEbQ5zkJ8XbIupHyWmBgRNMVi87bcQWkGL53DMJZ8FekUOruvNhcp1qNz91oML5QJFGOvp+Pn0svL/zfnxuyGyjDNhljwp3y+ivmOruVF05jQ3rekStbGnovamm7akDROjE/8+IyK3A3djXH7hUONz7Gu7vuhUc3eCaxi2cj2K5h+vgHMtUQ3EGEZ+YwRd4hk3ZG1uFUWbhr9zEZwvl1cxbkUSzunOpasFMNqSqaRK77YuDsEv3APmorr1bUjHSeOoMszZcI7v2hc1yDpgLm4qwWqkGCB3FPTiMRu+BaRID1Zjo9fWkk94JnmzLj9FVfT80PC7E6fRwhbH9QBFNJNUE0Hm3S4knLl/L2pa36KQYOJ/GzCcP6Dq3764YOiYyuZCyWY0qWqmciUu3aOP4XnPeanTwgYXmizF285sMkwFrTCvJ44RsBgKH3MgqM1JLbq4VbeT68dVnK8M2cdJB6JuWRdCFIr9Wq6aCBxeoUkUPSqpMOJr1KluMWM+cWKFYGDdQ8B2RjoKRiX4hI9Bzzow0uOeAKHzRH87GZ6oycW9JWig3MhXYY8R6PUVBBrfKCw30xgLHbdFNby+MisQ6TeS5YE2gkfcmpY4tbOvrW9Ey76x1aLYdWnAb8="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "gayanpathirage/SanitizersReviewTestSuite"
+      description: "Sanitizers Review Test Suite"
+    notification_email: gayanpathirage@gmail.com
+    build_command_prepend: ""
+    build_command:   "g++ -o MCTester -O -g -Wall main.cpp"
+    branch_pattern: master
