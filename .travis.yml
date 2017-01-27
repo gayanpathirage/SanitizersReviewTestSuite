@@ -16,6 +16,6 @@ addons:
       name: "gayanpathirage/SanitizersReviewTestSuite"
       description: "Sanitizers Review Test Suite"
     notification_email: gayanpathirage@gmail.com
-    build_command_prepend: ""
-    build_command:   "g++ -o MCTester -O -g -Wall main.cpp"
+    build_command_prepend: "cmake .."
+    build_command:   "cmake --build ."
     branch_pattern: master
