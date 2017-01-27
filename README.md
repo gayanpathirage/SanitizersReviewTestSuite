@@ -1,4 +1,4 @@
-#C++ Sanitizers Review Test Suite
+#C++ Dynamic Sanitizers Review - Test Suite
 [![Build Status](https://travis-ci.org/gayanpathirage/SanitizersReviewTestSuite.svg?branch=master)](https://travis-ci.org/gayanpathirage/SanitizersReviewTestSuite)
 
 <a href="https://scan.coverity.com/projects/gayanpathirage-sanitizersreviewtestsuite">
