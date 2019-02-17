@@ -229,7 +229,7 @@ void mismatchedFree()
 	printf("Testing mismatched free \n");
 	int* i = new int[10];
 	void* p = (void*)i;
-	delete p; //Array delete should be here
+	delete[] p; //delete p is no longer valid since compiler detect this now.
 }
 
 void speedTest()
